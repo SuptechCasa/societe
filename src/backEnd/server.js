@@ -6,7 +6,7 @@ app.use(cors());
 // Sample data  for employees
 const employes = [
   { id: 1, nom: "Ali", age: 30, salaire: 9000 },
-  { id: 2, nom: "Mohamed", age: 45, salaire: 7800 },
+  { id: 2, nom: "Mohamed", age: 45, salaire: 8000 },
 ];
 app.get('/employes', (req, res) => {
   res.json(employes);

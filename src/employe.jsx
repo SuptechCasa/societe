@@ -7,9 +7,9 @@ export default function Employe({ajoutEmploye}) {
     const addEmploye=(e)=>{
         e.preventDefault();
         ajoutEmploye({nom,age,salaire});
-        nom.setNom("")
-        age.setAge(0)
-        salaire.setSalaire(0)
+        setNom("")
+        setAge(0)
+        setSalaire(0)
     }
     return (
         <>

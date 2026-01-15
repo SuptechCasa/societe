@@ -1,24 +1,33 @@
+import axios from 'axios';
 import './App.css'
 import Compteur from './compteur';
 import Employe from './employe'
 import { useState } from 'react'
 function App() {
   const [showEmploye, setShowEmploye] = useState(false);
-  const [employes,setEmployes]=useState([
-    {nom:"Ali",age:30,salaire:9000},
-    {nom:"Mohamed",age:45,salaire:7800},
-  ])
+  const [employes,setEmployes]=useState([])
   const toggle=()=>{setShowEmploye(!showEmploye)}
 
+  axios.get('http://localhost:3000/employes')
+    .then(response=>{
+      setEmployes(response.data)
+    })
+    .catch(error=>{
+      console.error('Erreur lors de la récupération des employés:', error);
+    });
+
   const addEmploye=(employe)=>{
-    setEmployes([...employes,employe])
+    axios.post('http://localhost:3000/employes', employe)
+      .then(response=>{
+        setEmployes([...employes, response.data]);
+      })
+      .catch(error=>{
+        console.error('Erreur lors de l\'ajout de l\'employé:', error);
+      });
   }
 
   const deleteEmploye=(e)=>{
-    const index=e.target.parentElement.parentElement.rowIndex-1;
-    const liste=[...employes];
-    liste.splice(index,1);
-    setEmployes(liste);
+    
   }
   return (
     <>
