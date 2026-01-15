@@ -5,8 +5,8 @@ const port = 3000;
 app.use(cors());
 // Sample data  for employees
 const employes = [
-  { id: 1, nom: "Ali", age: 30, salaire: 9000 },
-  { id: 2, nom: "Mohamed", age: 45, salaire: 8000 },
+  {nom: "Ali", age: 30, salaire: 9000 },
+  {nom: "Mohamed", age: 45, salaire: 8000 },
 ];
 app.get('/employes', (req, res) => {
   res.json(employes);
@@ -18,9 +18,9 @@ app.post('/employes', express.json(), (req, res) => {
   res.status(201).json(newEmploye);
 });
 
-app.delete('/employes/:id', (req, res) => {
-  const id = parseInt(req.params.id);
-  const index = employes.findIndex(emp => emp.id === id);   
+app.delete('/employes/:nom', (req, res) => {
+  const nom = req.params.nom;
+  const index = employes.findIndex(emp => emp.nom === nom);
     if (index !== -1) {
         employes.splice(index, 1);
         res.status(204).send();

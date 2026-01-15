@@ -27,7 +27,17 @@ function App() {
   }
 
   const deleteEmploye=(e)=>{
-    
+    const index=e.target.parentElement.parentElement.rowIndex-1;
+    const liste=[...employes];
+    liste.splice(index,1);
+    setEmployes(liste);
+    axios.delete(`http://localhost:3000/employes/${employes[index].nom}`)
+      .then(()=>{
+        console.log('Employé supprimé avec succès');
+      })
+      .catch(error=>{
+        console.error('Erreur lors de la suppression de l\'employé:', error);
+      });
   }
   return (
     <>
